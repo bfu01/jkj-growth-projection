@@ -134,49 +134,34 @@
   .data-note strong { color:#090A0F; }
 
   /* ── WINNABILITY MODAL ── */
-  .w-overlay { display:none; position:fixed; inset:0; background:rgba(9,10,15,0.55); z-index:1000; align-items:center; justify-content:center; }
-  .w-overlay.open { display:flex; }
-  .w-modal {
-    background:#fff; border-radius:14px; width:92vw; max-width:1000px; max-height:88vh;
-    overflow-y:auto; box-shadow:0 2px 3px rgba(7,7,8,0.15),0 45px 45px rgba(7,7,8,0.2);
-    animation:wSlideIn .2s ease;
-  }
-  @keyframes wSlideIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-  .w-header {
-    padding:16px 20px 12px; border-bottom:1px solid #C4D3E3;
-    display:flex; justify-content:space-between; align-items:flex-start;
-    position:sticky; top:0; background:#fff; z-index:1; border-radius:14px 14px 0 0;
-  }
-  .w-header-left { flex:1; }
-  .w-title { font-size:15px; font-weight:700; color:#090A0F; letter-spacing:-0.2px; }
-  .w-title em { font-style:italic; font-family:'STIX Two Text',serif; color:#009BFF; font-weight:400; }
-  .w-summary { font-size:12px; color:#090A0F; margin-top:8px; line-height:1.6; background:#EBF0F5; border-left:3px solid #3A55FF; padding:8px 12px; border-radius:0 6px 6px 0; }
-  .w-summary strong { color:#3A55FF; }
-  .w-close { font-size:12px; color:#6b7a96; cursor:pointer; padding:4px 10px; border:1px solid #C4D3E3; border-radius:6px; background:#EBF0F5; font-weight:600; white-space:nowrap; margin-left:16px; }
-  .w-close:hover { color:#3A55FF; border-color:#3A55FF; }
-  .w-body { padding:16px 20px 20px; }
-  .w-cols { display:flex; gap:16px; }
-  .w-col { flex:1; min-width:0; }
-  .w-col-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6b7a96; margin-bottom:12px; padding-bottom:6px; border-bottom:2px solid #EBF0F5; }
-  .w-bucket {
-    background:#EBF0F5; border:1px solid #C4D3E3; border-radius:10px;
-    padding:12px 14px; margin-bottom:10px;
-  }
-  .w-bucket-hdr { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-  .w-bucket-name { font-size:13px; font-weight:700; }
-  .w-bucket-meta { font-size:11px; color:#6b7a96; text-align:right; }
-  .w-bar-row { margin-bottom:8px; }
-  .w-bar-label { display:flex; justify-content:space-between; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; color:#6b7a96; margin-bottom:4px; }
-  .w-bar-track { height:10px; background:#fff; border-radius:5px; overflow:hidden; border:1px solid #C4D3E3; }
-  .w-bar-fill { height:100%; border-radius:5px; transition:width .4s ease; }
-  .w-bar-sublabel { display:flex; justify-content:space-between; font-size:11px; margin-top:4px; color:#090A0F; font-weight:600; }
-  .w-bar-sublabel span { color:#6b7a96; font-weight:400; }
-  .w-auction-row { margin-top:8px; }
-  .w-bidding { display:flex; justify-content:space-between; font-size:11px; margin-top:5px; }
-  .w-bidding-yes { color:#3A55FF; font-weight:600; }
-  .w-bidding-no  { color:#dc2626; font-weight:600; }
-  .w-note { font-size:10px; color:#6b7a96; margin-top:14px; line-height:1.6; border-top:1px solid #C4D3E3; padding-top:10px; }
-  .ads-click-hint { font-size:10px; color:#009BFF; margin-top:5px; font-weight:600; cursor:pointer; }
+  .w-overlay{display:none;position:fixed;inset:0;background:rgba(9,10,15,.55);z-index:1000;align-items:center;justify-content:center;}
+  .w-overlay.open{display:flex;}
+  .w-modal{background:#fff;border-radius:14px;width:92vw;max-width:1020px;max-height:88vh;overflow-y:auto;box-shadow:0 2px 3px rgba(7,7,8,.15),0 45px 45px rgba(7,7,8,.2);animation:wIn .2s ease;}
+  @keyframes wIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .w-hdr{padding:14px 20px 10px;border-bottom:1px solid #C4D3E3;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:#fff;z-index:1;border-radius:14px 14px 0 0;}
+  .w-title{font-size:15px;font-weight:700;color:#090A0F;}
+  .w-title em{font-style:italic;font-family:'STIX Two Text',serif;color:#009BFF;font-weight:400;}
+  .w-summary{font-size:12px;color:#090A0F;margin-top:8px;line-height:1.6;background:#EBF0F5;border-left:3px solid #3A55FF;padding:8px 12px;border-radius:0 6px 6px 0;}
+  .w-summary b{color:#3A55FF;}
+  .w-close{font-size:11px;color:#6b7a96;cursor:pointer;padding:4px 10px;border:1px solid #C4D3E3;border-radius:6px;background:#EBF0F5;font-weight:600;white-space:nowrap;margin-left:14px;}
+  .w-close:hover{color:#3A55FF;border-color:#3A55FF;}
+  .w-body{padding:14px 20px 20px;}
+  .w-cols{display:flex;gap:14px;}
+  .w-col{flex:1;min-width:0;}
+  .w-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b7a96;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #EBF0F5;}
+  .w-bucket{background:#EBF0F5;border:1px solid #C4D3E3;border-radius:10px;padding:11px 13px;margin-bottom:9px;}
+  .w-bkt-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+  .w-bkt-name{font-size:13px;font-weight:700;}
+  .w-bkt-meta{font-size:11px;color:#6b7a96;text-align:right;}
+  .w-bar-lbl{display:flex;justify-content:space-between;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#6b7a96;margin-bottom:3px;}
+  .w-bar-track{height:10px;background:#fff;border-radius:5px;overflow:hidden;border:1px solid #C4D3E3;margin-bottom:4px;}
+  .w-bar-fill{height:100%;border-radius:5px;}
+  .w-bar-sub{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;}
+  .w-bidding{display:flex;justify-content:space-between;font-size:11px;margin-top:4px;}
+  .w-bid-y{color:#3A55FF;font-weight:600;}
+  .w-bid-n{color:#dc2626;font-weight:600;}
+  .w-foot{font-size:10px;color:#6b7a96;margin-top:12px;border-top:1px solid #C4D3E3;padding-top:10px;line-height:1.6;}
+  .ads-hint{font-size:10px;color:#009BFF;margin-top:5px;font-weight:600;}
 </style>
 </head>
 <body>
@@ -361,7 +346,7 @@
         <div class="lever-name" style="color:#009BFF;font-size:12px;">SEO / Content Lift ($)</div>
         <input class="seo-inp" type="number" id="seo-value" value="33832" oninput="recalc()">
       </div>
-      <div class="ads-card" style="cursor:pointer;" onclick="openWinnability()">
+      <div class="ads-card" style="cursor:pointer;" onclick="openW()">
         <div class="lever-hdr" style="margin-bottom:6px;">
           <span class="lever-name" style="color:#009BFF;">Ads Growth</span>
           <span class="pct-lbl" id="ads-pct-display" style="color:#009BFF;">15%</span>
@@ -372,7 +357,7 @@
         </div>
         <div class="ads-note">⚠ TACOS not in presales. ~35% search term ad coverage (672 of 2,412 terms).</div>
         <div class="lever-up" id="ads-upside" style="color:#009BFF;">—</div>
-        <div class="ads-click-hint">▲ Click to view search winnability</div>
+        <div class="ads-hint">▲ Click to view search winnability</div>
       </div>
     </div>
 
@@ -549,4 +534,135 @@ function recalc() {
 
   document.getElementById('total-brand-display').textContent = fmt(totalBrand);
   document.getElementById('lbb-pct').textContent  = Math.round(lbbSolve*100)+'%';
-  d
+  document.getElementById('oos-pct').textContent  = Math.round(oosSolve*100)+'%';
+  document.getElementById('sup-pct').textContent  = Math.round(supSolve*100)+'%';
+  document.getElementById('ads-pct-display').textContent = Math.round(adsPct*100)+'%';
+
+  document.getElementById('lbb-upside').textContent = '+'+fmt(lbbUp);
+  document.getElementById('lbb-basis').textContent  = fmt(lbb3P)+' at 3P sellers';
+  document.getElementById('oos-upside').textContent = '+'+fmt(oosUp);
+  document.getElementById('oos-basis').textContent  = 'on total brand rev '+fmt(totalBrand);
+  document.getElementById('sup-upside').textContent = '+'+fmt(supUp);
+  document.getElementById('sup-basis').textContent  = 'on total brand rev '+fmt(totalBrand);
+  document.getElementById('ads-upside').textContent = '+'+fmt(adsUp);
+  document.getElementById('total-value').textContent = fmt(total);
+  document.getElementById('total-uplift').textContent = '+'+fmt(uplift)+' (+'+upliftP+'%) vs baseline';
+
+  const labels = ['Baseline','LBB\nRecapture','Out of\nStock','Suppression','SEO /\nContent','Ads\nGrowth','Total\nOpportunity'];
+  const vals   = [baseline,lbbUp,oosUp,supUp,seoUp,adsUp,total];
+  const floats = [0,baseline,baseline+lbbUp,baseline+lbbUp+oosUp,baseline+lbbUp+oosUp+supUp,baseline+lbbUp+oosUp+supUp+seoUp,0];
+  const colors = ['#C4D3E3','#770BFF','#3A55FF','#3A55FF','#009BFF','#009BFF','#C4D3E3'];
+
+  if (chart) chart.destroy();
+  Chart.defaults.color='#6b7a96';
+  Chart.defaults.borderColor='#EBF0F5';
+  const ctx = document.getElementById('waterfall').getContext('2d');
+  chart = new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {data:floats,backgroundColor:'rgba(0,0,0,0)',borderWidth:0,stack:'stack'},
+        {data:vals,backgroundColor:colors,borderWidth:0,borderRadius:{topLeft:5,topRight:5},stack:'stack'}
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#fff',borderColor:'#C4D3E3',borderWidth:1,
+          titleColor:'#090A0F',bodyColor:'#3A55FF',bodyFont:{weight:'bold',size:14},
+          callbacks:{label:ctx=>ctx.datasetIndex===1?' '+fmt(ctx.raw):null},
+          filter:item=>item.datasetIndex===1
+        }
+      },
+      scales:{
+        x:{stacked:true,grid:{display:false},border:{display:false},
+          ticks:{font:{size:11,family:"'Wix Madefor Display',sans-serif"},color:'#6b7a96'}},
+        y:{stacked:true,grid:{color:'#EBF0F5'},border:{display:false},
+          ticks:{callback:v=>'$'+(v/1e6).toFixed(1)+'M',font:{size:11,family:"'Wix Madefor Display',sans-serif"},color:'#6b7a96'}}
+      }
+    },
+    plugins:[{
+      id:'valLabels',
+      afterDatasetsDraw(chart){
+        const {ctx,data}=chart;
+        chart.getDatasetMeta(1).data.forEach((bar,i)=>{
+          const val=data.datasets[1].data[i];
+          const float=data.datasets[0].data[i];
+          const isInc=i>0&&i<labels.length-1;
+          ctx.save();
+          ctx.fillStyle='#090A0F';
+          ctx.font='bold 11px "Wix Madefor Display",sans-serif';
+          ctx.textAlign='center';
+          ctx.textBaseline='bottom';
+          ctx.fillText((isInc?'+':'')+fmt(val),bar.x,chart.scales.y.getPixelForValue(float+val)-5);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+
+// ── WINNABILITY ──
+const WB=[
+  {name:'Winning', color:'#770BFF', terms:236, clicks:962, pot:94,  capPct:13.9, aucPct:50.8, bid:120, noBid:116, side:'L'},
+  {name:'High',    color:'#22c55e', terms:282, clicks:10,  pot:168, capPct:1.0,  aucPct:9.9,  bid:28,  noBid:254, side:'L'},
+  {name:'Medium',  color:'#f59e0b', terms:596, clicks:44,  pot:624, capPct:1.5,  aucPct:23.8, bid:142, noBid:454, side:'R'},
+  {name:'Low',     color:'#ef4444', terms:536, clicks:34,  pot:374, capPct:0.8,  aucPct:35.8, bid:192, noBid:344, side:'R'},
+  {name:'Very Low',color:'#9ca3af', terms:762, clicks:254, pot:104, capPct:11.6, aucPct:24.9, bid:190, noBid:572, side:'R'}
+];
+let _wBuilt=false;
+function openW(){
+  if(!_wBuilt){
+    const maxCap=WB[0].capPct;
+    const bHTML=b=>{
+      const bw=Math.min(100,Math.round(b.capPct/maxCap*100));
+      return `<div class="w-bucket">
+        <div class="w-bkt-hdr">
+          <span class="w-bkt-name" style="color:${b.color}">${b.name} &middot; ${b.terms.toLocaleString()} kws</span>
+          <span class="w-bkt-meta">${b.clicks.toLocaleString()} + ${b.pot.toLocaleString()} potential</span>
+        </div>
+        <div class="w-bar-lbl"><span>Clicks captured</span><span style="color:${b.color}">${b.capPct.toFixed(1)}%</span></div>
+        <div class="w-bar-track"><div class="w-bar-fill" style="width:${bw}%;background:${b.color}"></div></div>
+        <div class="w-bar-sub"><b>${b.clicks.toLocaleString()}/day</b><span>+${b.pot.toLocaleString()}/day potential</span></div>
+        <div class="w-bar-lbl"><span>In auction</span><span style="color:#3A55FF">${b.aucPct.toFixed(1)}%</span></div>
+        <div class="w-bar-track"><div class="w-bar-fill" style="width:${b.aucPct}%;background:#3A55FF"></div></div>
+        <div class="w-bidding"><span class="w-bid-y">${b.bid.toLocaleString()} bidding</span><span class="w-bid-n">${b.noBid.toLocaleString()} not bidding</span></div>
+      </div>`;
+    };
+    const L=WB.filter(b=>b.side==='L').map(bHTML).join('');
+    const R=WB.filter(b=>b.side==='R').map(bHTML).join('');
+    const totPot=WB.slice(1).reduce((s,b)=>s+b.pot,0);
+    const totTerms=WB.slice(1).reduce((s,b)=>s+b.terms,0);
+    document.getElementById('w-body').innerHTML=`
+      <div class="w-cols"><div class="w-col"><div class="w-col-title">Winning &amp; High Priority</div>${L}</div>
+      <div class="w-col"><div class="w-col-title">Monitor &amp; Develop</div>${R}</div></div>
+      <div class="w-foot">Figures are directional estimates · Pattern presales-intel snapshot May 20 2026 · Click share figures show brand performance relative to top shelf competitor, not total term share · 1,740 of 2,412 terms have no active bidding</div>`;
+    document.getElementById('w-summary').innerHTML=
+      `Jung Kwan Jang is estimated to be winning across <b>236 search terms</b>, generating approximately <b>962 brand clicks per day</b>. A further <b>${totTerms.toLocaleString()} terms</b> represent an estimated <b>${totPot.toLocaleString()} additional potential clicks per day</b>. Figures are directional estimates.`;
+    _wBuilt=true;
+  }
+  document.getElementById('w-overlay').classList.add('open');
+}
+function closeW(){document.getElementById('w-overlay').classList.remove('open');}
+updateBB();
+recalc();
+</script>
+
+<div class="w-overlay" id="w-overlay" onclick="closeW()">
+  <div class="w-modal" onclick="event.stopPropagation()">
+    <div class="w-hdr">
+      <div>
+        <div class="w-title">Digital Search <em>Winnability</em></div>
+        <div class="w-summary" id="w-summary"></div>
+      </div>
+      <button class="w-close" onclick="closeW()">&#x2715; Close</button>
+    </div>
+    <div class="w-body" id="w-body"></div>
+  </div>
+</div>
+</body>
+</html>
