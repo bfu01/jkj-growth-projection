@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jung Kwan Jang US — Growth Projection · Pattern</title>
+<title>Jung Kwan Jang US — Growth Projection v2 · Pattern</title>
 <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&family=STIX+Two+Text:ital,wght@1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
@@ -133,35 +133,40 @@
   .data-note { font-size:11px; color:#6b7a96; margin-top:12px; border-top:1px solid #C4D3E3; padding-top:10px; line-height:1.6; }
   .data-note strong { color:#090A0F; }
 
-  /* ── WINNABILITY MODAL ── */
-  .w-overlay{display:none;position:fixed;inset:0;background:rgba(9,10,15,.55);z-index:1000;align-items:center;justify-content:center;}
+  /* WINNABILITY MODAL */
+  .w-overlay{display:none;position:fixed;inset:0;background:rgba(9,10,15,.5);z-index:9999;align-items:center;justify-content:center;}
   .w-overlay.open{display:flex;}
-  .w-modal{background:#fff;border-radius:14px;width:92vw;max-width:1020px;max-height:88vh;overflow-y:auto;box-shadow:0 2px 3px rgba(7,7,8,.15),0 45px 45px rgba(7,7,8,.2);animation:wIn .2s ease;}
-  @keyframes wIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-  .w-hdr{padding:14px 20px 10px;border-bottom:1px solid #C4D3E3;display:flex;justify-content:space-between;align-items:flex-start;position:sticky;top:0;background:#fff;z-index:1;border-radius:14px 14px 0 0;}
-  .w-title{font-size:15px;font-weight:700;color:#090A0F;}
+  .w-modal{background:#fff;border-radius:14px;width:90vw;max-width:980px;max-height:85vh;overflow-y:auto;
+    box-shadow:0 2px 3px rgba(7,7,8,.12),0 30px 40px rgba(7,7,8,.18);}
+  .w-hdr{padding:14px 20px 10px;border-bottom:1px solid #C4D3E3;display:flex;justify-content:space-between;align-items:flex-start;
+    position:sticky;top:0;background:#fff;border-radius:14px 14px 0 0;z-index:1;}
+  .w-title{font-size:15px;font-weight:700;color:#090A0F;letter-spacing:-0.2px;}
   .w-title em{font-style:italic;font-family:'STIX Two Text',serif;color:#009BFF;font-weight:400;}
-  .w-summary{font-size:12px;color:#090A0F;margin-top:8px;line-height:1.6;background:#EBF0F5;border-left:3px solid #3A55FF;padding:8px 12px;border-radius:0 6px 6px 0;}
+  .w-summary{font-size:12px;color:#090A0F;margin-top:8px;line-height:1.6;background:#EBF0F5;border-left:3px solid #3A55FF;padding:8px 12px;border-radius:0 6px 6px 0;max-width:720px;}
   .w-summary b{color:#3A55FF;}
-  .w-close{font-size:11px;color:#6b7a96;cursor:pointer;padding:4px 10px;border:1px solid #C4D3E3;border-radius:6px;background:#EBF0F5;font-weight:600;white-space:nowrap;margin-left:14px;}
-  .w-close:hover{color:#3A55FF;border-color:#3A55FF;}
+  .w-close-btn{font-size:11px;color:#6b7a96;cursor:pointer;padding:5px 12px;border:1px solid #C4D3E3;border-radius:6px;background:#EBF0F5;font-weight:600;white-space:nowrap;margin-left:16px;flex-shrink:0;}
+  .w-close-btn:hover{color:#3A55FF;border-color:#3A55FF;}
   .w-body{padding:14px 20px 20px;}
-  .w-cols{display:flex;gap:14px;}
-  .w-col{flex:1;min-width:0;}
-  .w-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b7a96;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #EBF0F5;}
-  .w-bucket{background:#EBF0F5;border:1px solid #C4D3E3;border-radius:10px;padding:11px 13px;margin-bottom:9px;}
-  .w-bkt-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+  .w-cols{display:flex;gap:16px;}
+  .w-col{flex:1;}
+  .w-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b7a96;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #EBF0F5;}
+  .w-bkt{background:#EBF0F5;border:1px solid #C4D3E3;border-radius:10px;padding:12px 13px;margin-bottom:10px;}
+  .w-bkt-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
   .w-bkt-name{font-size:13px;font-weight:700;}
-  .w-bkt-meta{font-size:11px;color:#6b7a96;text-align:right;}
-  .w-bar-lbl{display:flex;justify-content:space-between;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#6b7a96;margin-bottom:3px;}
-  .w-bar-track{height:10px;background:#fff;border-radius:5px;overflow:hidden;border:1px solid #C4D3E3;margin-bottom:4px;}
-  .w-bar-fill{height:100%;border-radius:5px;}
-  .w-bar-sub{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;}
-  .w-bidding{display:flex;justify-content:space-between;font-size:11px;margin-top:4px;}
-  .w-bid-y{color:#3A55FF;font-weight:600;}
-  .w-bid-n{color:#dc2626;font-weight:600;}
-  .w-foot{font-size:10px;color:#6b7a96;margin-top:12px;border-top:1px solid #C4D3E3;padding-top:10px;line-height:1.6;}
-  .ads-hint{font-size:10px;color:#009BFF;margin-top:5px;font-weight:600;}
+  .w-bkt-meta{font-size:11px;color:#6b7a96;}
+  .w-rl{display:flex;justify-content:space-between;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:#6b7a96;margin-bottom:3px;}
+  .w-track{height:10px;background:#fff;border-radius:5px;overflow:hidden;border:1px solid #C4D3E3;margin-bottom:4px;}
+  .w-fill{height:100%;border-radius:5px;transition:width .3s ease;}
+  .w-nums{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;}
+  .w-nums b{color:#090A0F;}
+  .w-nums span{color:#6b7a96;}
+  .w-bid{display:flex;justify-content:space-between;font-size:11px;margin-top:3px;}
+  .w-bid-y{color:#3A55FF;font-weight:700;}
+  .w-bid-n{color:#dc2626;font-weight:700;}
+  .w-footer{font-size:10px;color:#6b7a96;margin-top:14px;border-top:1px solid #C4D3E3;padding-top:10px;line-height:1.6;}
+  .win-btn{display:block;width:100%;margin-top:8px;padding:6px 10px;background:#EBF0F5;border:1px solid #009BFF;border-radius:6px;
+    font-size:11px;font-weight:700;color:#009BFF;cursor:pointer;text-align:center;font-family:'Wix Madefor Display',sans-serif;}
+  .win-btn:hover{background:#ddf0ff;}
 </style>
 </head>
 <body>
@@ -346,18 +351,18 @@
         <div class="lever-name" style="color:#009BFF;font-size:12px;">SEO / Content Lift ($)</div>
         <input class="seo-inp" type="number" id="seo-value" value="33832" oninput="recalc()">
       </div>
-      <div class="ads-card" style="cursor:pointer;" onclick="openW()">
+      <div class="ads-card">
         <div class="lever-hdr" style="margin-bottom:6px;">
           <span class="lever-name" style="color:#009BFF;">Ads Growth</span>
           <span class="pct-lbl" id="ads-pct-display" style="color:#009BFF;">15%</span>
         </div>
-        <div class="solve-row" onclick="event.stopPropagation()">
+        <div class="solve-row">
           <span class="solve-lbl" style="color:#009BFF;">% rev</span>
           <input type="range" class="r-bright" id="ads-pct" min="0" max="50" value="15" oninput="recalc()">
         </div>
         <div class="ads-note">⚠ TACOS not in presales. ~35% search term ad coverage (672 of 2,412 terms).</div>
         <div class="lever-up" id="ads-upside" style="color:#009BFF;">—</div>
-        <div class="ads-hint">▲ Click to view search winnability</div>
+        <button class="win-btn" onclick="openWin()">▲ View search winnability</button>
       </div>
     </div>
 
@@ -606,60 +611,63 @@ function recalc() {
 }
 
 
-// ── WINNABILITY ──
-const WB=[
-  {name:'Winning', color:'#770BFF', terms:236, clicks:962, pot:94,  capPct:13.9, aucPct:50.8, bid:120, noBid:116, side:'L'},
-  {name:'High',    color:'#22c55e', terms:282, clicks:10,  pot:168, capPct:1.0,  aucPct:9.9,  bid:28,  noBid:254, side:'L'},
-  {name:'Medium',  color:'#f59e0b', terms:596, clicks:44,  pot:624, capPct:1.5,  aucPct:23.8, bid:142, noBid:454, side:'R'},
-  {name:'Low',     color:'#ef4444', terms:536, clicks:34,  pot:374, capPct:0.8,  aucPct:35.8, bid:192, noBid:344, side:'R'},
-  {name:'Very Low',color:'#9ca3af', terms:762, clicks:254, pot:104, capPct:11.6, aucPct:24.9, bid:190, noBid:572, side:'R'}
+// ── WINNABILITY DATA ──
+const WB = [
+  {n:'Winning', c:'#770BFF', kws:236, clk:962,  pot:94,  cap:13.9, auc:50.8, bid:120, nob:116, col:'L'},
+  {n:'High',    c:'#22c55e', kws:282, clk:10,   pot:168, cap:1.0,  auc:9.9,  bid:28,  nob:254, col:'L'},
+  {n:'Medium',  c:'#f59e0b', kws:596, clk:44,   pot:624, cap:1.5,  auc:23.8, bid:142, nob:454, col:'R'},
+  {n:'Low',     c:'#ef4444', kws:536, clk:34,   pot:374, cap:0.8,  auc:35.8, bid:192, nob:344, col:'R'},
+  {n:'Very Low',c:'#9ca3af', kws:762, clk:254,  pot:104, cap:11.6, auc:24.9, bid:190, nob:572, col:'R'}
 ];
-let _wBuilt=false;
-function openW(){
-  if(!_wBuilt){
-    const maxCap=WB[0].capPct;
-    const bHTML=b=>{
-      const bw=Math.min(100,Math.round(b.capPct/maxCap*100));
-      return `<div class="w-bucket">
-        <div class="w-bkt-hdr">
-          <span class="w-bkt-name" style="color:${b.color}">${b.name} &middot; ${b.terms.toLocaleString()} kws</span>
-          <span class="w-bkt-meta">${b.clicks.toLocaleString()} + ${b.pot.toLocaleString()} potential</span>
-        </div>
-        <div class="w-bar-lbl"><span>Clicks captured</span><span style="color:${b.color}">${b.capPct.toFixed(1)}%</span></div>
-        <div class="w-bar-track"><div class="w-bar-fill" style="width:${bw}%;background:${b.color}"></div></div>
-        <div class="w-bar-sub"><b>${b.clicks.toLocaleString()}/day</b><span>+${b.pot.toLocaleString()}/day potential</span></div>
-        <div class="w-bar-lbl"><span>In auction</span><span style="color:#3A55FF">${b.aucPct.toFixed(1)}%</span></div>
-        <div class="w-bar-track"><div class="w-bar-fill" style="width:${b.aucPct}%;background:#3A55FF"></div></div>
-        <div class="w-bidding"><span class="w-bid-y">${b.bid.toLocaleString()} bidding</span><span class="w-bid-n">${b.noBid.toLocaleString()} not bidding</span></div>
-      </div>`;
+let _wInit = false;
+function openWin() {
+  if (!_wInit) {
+    _wInit = true;
+    const maxC = WB[0].cap;
+    const row = b => {
+      const bw = Math.min(100, Math.round(b.cap / maxC * 100));
+      return '<div class="w-bkt">' +
+        '<div class="w-bkt-top"><span class="w-bkt-name" style="color:'+b.c+'">'+b.n+' &middot; '+b.kws.toLocaleString()+' kws</span>' +
+        '<span class="w-bkt-meta">'+b.clk.toLocaleString()+' + '+b.pot.toLocaleString()+' potential</span></div>' +
+        '<div class="w-rl"><span>Clicks captured</span><span style="color:'+b.c+'">'+b.cap.toFixed(1)+'%</span></div>' +
+        '<div class="w-track"><div class="w-fill" style="width:'+bw+'%;background:'+b.c+'"></div></div>' +
+        '<div class="w-nums"><b>'+b.clk.toLocaleString()+'/day</b><span>+'+b.pot.toLocaleString()+'/day potential</span></div>' +
+        '<div class="w-rl"><span>In auction</span><span style="color:#3A55FF">'+b.auc.toFixed(1)+'%</span></div>' +
+        '<div class="w-track"><div class="w-fill" style="width:'+b.auc+'%;background:#3A55FF"></div></div>' +
+        '<div class="w-bid"><span class="w-bid-y">'+b.bid.toLocaleString()+' bidding</span><span class="w-bid-n">'+b.nob.toLocaleString()+' not bidding</span></div>' +
+        '</div>';
     };
-    const L=WB.filter(b=>b.side==='L').map(bHTML).join('');
-    const R=WB.filter(b=>b.side==='R').map(bHTML).join('');
-    const totPot=WB.slice(1).reduce((s,b)=>s+b.pot,0);
-    const totTerms=WB.slice(1).reduce((s,b)=>s+b.terms,0);
-    document.getElementById('w-body').innerHTML=`
-      <div class="w-cols"><div class="w-col"><div class="w-col-title">Winning &amp; High Priority</div>${L}</div>
-      <div class="w-col"><div class="w-col-title">Monitor &amp; Develop</div>${R}</div></div>
-      <div class="w-foot">Figures are directional estimates · Pattern presales-intel snapshot May 20 2026 · Click share figures show brand performance relative to top shelf competitor, not total term share · 1,740 of 2,412 terms have no active bidding</div>`;
-    document.getElementById('w-summary').innerHTML=
-      `Jung Kwan Jang is estimated to be winning across <b>236 search terms</b>, generating approximately <b>962 brand clicks per day</b>. A further <b>${totTerms.toLocaleString()} terms</b> represent an estimated <b>${totPot.toLocaleString()} additional potential clicks per day</b>. Figures are directional estimates.`;
-    _wBuilt=true;
+    const L = WB.filter(b=>b.col==='L').map(row).join('');
+    const R = WB.filter(b=>b.col==='R').map(row).join('');
+    const totT = WB.slice(1).reduce((s,b)=>s+b.kws,0);
+    const totP = WB.slice(1).reduce((s,b)=>s+b.pot,0);
+    document.getElementById('w-summary').innerHTML =
+      'Jung Kwan Jang is estimated to be winning across <b>236 search terms</b>, generating approximately <b>962 brand clicks per day</b>.' +
+      ' A further <b>'+totT.toLocaleString()+' terms</b> represent an estimated <b>'+totP.toLocaleString()+' additional potential clicks per day</b>. Figures are directional estimates.';
+    document.getElementById('w-body').innerHTML =
+      '<div class="w-cols">' +
+      '<div class="w-col"><div class="w-col-title">Winning &amp; High Priority</div>'+L+'</div>' +
+      '<div class="w-col"><div class="w-col-title">Monitor &amp; Develop</div>'+R+'</div>' +
+      '</div>' +
+      '<div class="w-footer">Figures are directional estimates &middot; Pattern presales-intel snapshot May 20 2026 &middot; ' +
+      'Click share shows brand vs top shelf competitor, not total term share &middot; 1,740 of 2,412 terms have no active bidding</div>';
   }
   document.getElementById('w-overlay').classList.add('open');
 }
-function closeW(){document.getElementById('w-overlay').classList.remove('open');}
-updateBB();
-recalc();
+function closeWin() {
+  document.getElementById('w-overlay').classList.remove('open');
+}
+document.addEventListener("DOMContentLoaded", function() { updateBB(); recalc(); });
 </script>
 
-<div class="w-overlay" id="w-overlay" onclick="closeW()">
+<div class="w-overlay" id="w-overlay" onclick="closeWin()">
   <div class="w-modal" onclick="event.stopPropagation()">
     <div class="w-hdr">
       <div>
         <div class="w-title">Digital Search <em>Winnability</em></div>
         <div class="w-summary" id="w-summary"></div>
       </div>
-      <button class="w-close" onclick="closeW()">&#x2715; Close</button>
+      <button class="w-close-btn" onclick="closeWin()">&#x2715; Close</button>
     </div>
     <div class="w-body" id="w-body"></div>
   </div>
