@@ -193,6 +193,12 @@
       </g>
     </svg>
   </div>
+  <button id="lang-toggle" onclick="toggleLang()"
+    style="margin-left:16px;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
+           cursor:pointer;border:1px solid #C4D3E3;background:#EBF0F5;color:#090A0F;
+           font-family:'Wix Madefor Display',sans-serif;white-space:nowrap;">
+    中文
+  </button>
 </div>
 <div class="accent-bar"></div>
 
@@ -291,7 +297,12 @@
   <div class="controls">
     <div class="baseline-row">
       <label>Top Seller Revenue — T12M</label>
-      <input type="number" id="baseline" value="10045248" oninput="recalc()">
+      <input type="text" id="baseline-display"
+        value="10,045,248"
+        style="width:100%;background:transparent;border:none;font-size:18px;font-weight:700;color:#090A0F;font-family:'Wix Madefor Display',sans-serif;"
+        oninput="onBaselineInput(this)"
+        onblur="formatBaselineDisplay(this)">
+      <input type="hidden" id="baseline" value="10045248">
     </div>
     <div class="tbr-row">
       <span>Est. Total Brand Rev (incl. 3P)</span>
@@ -458,17 +469,17 @@ function updateBB() {
   document.getElementById('seg-oos').style.width     = d.oos+'%';
   document.getElementById('seg-sup').style.width     = d.sup+'%';
 
-  document.getElementById('bar-lbl-primary').textContent = d.primary.toFixed(1)+'% Primary';
-  document.getElementById('bar-lbl-lbb').textContent     = d.lbb.toFixed(1)+'% 3P';
-  document.getElementById('bar-lbl-oos').textContent     = d.oos.toFixed(1)+'% OOS';
-  document.getElementById('bar-lbl-sup').textContent     = d.sup.toFixed(1)+'% Supp.';
+  document.getElementById('bar-lbl-primary').textContent = d.primary.toFixed(1)+'% '+t('lbl-primary');
+  document.getElementById('bar-lbl-lbb').textContent     = d.lbb.toFixed(1)+'% '+(currentLang==='zh'?'第三方':'3P');
+  document.getElementById('bar-lbl-oos').textContent     = d.oos.toFixed(1)+'% '+(currentLang==='zh'?'缺货':'OOS');
+  document.getElementById('bar-lbl-sup').textContent     = d.sup.toFixed(1)+'% '+(currentLang==='zh'?'抑制':'Supp.');
 
   document.getElementById('stat-primary').textContent = d.primary.toFixed(1)+'%';
   document.getElementById('stat-lbb').textContent     = d.lbb.toFixed(1)+'%';
   document.getElementById('stat-oos').textContent     = d.oos.toFixed(1)+'%';
   document.getElementById('stat-sup').textContent     = d.sup.toFixed(1)+'%';
   document.getElementById('stat-sellers').textContent = d.sellers;
-  document.getElementById('stat-new-sellers').textContent = d.newSellers+' new sellers in window';
+  document.getElementById('stat-new-sellers').textContent = d.newSellers+(currentLang==='zh'?' 个新卖家（期间内）':' new sellers in window');
 
   if (activeWindow > 30) {
     const fmtT = (v, badIfPos) => {
@@ -578,7 +589,7 @@ function recalc() {
   document.getElementById('sup-basis').textContent  = 'on total brand rev '+fmt(totalBrand);
   document.getElementById('ads-upside').textContent = '+'+fmt(adsUp);
   document.getElementById('total-value').textContent = fmt(total);
-  document.getElementById('total-uplift').textContent = '+'+fmt(uplift)+' (+'+upliftP+'%) vs baseline';
+  document.getElementById('total-uplift').textContent = '+'+fmt(uplift)+' (+'+upliftP+'%) '+(currentLang==='zh'?'vs 基准':'vs baseline');
 
   const labels = ['Baseline','LBB\nRecapture','Out of\nStock','Suppression','SEO /\nContent','Ads\nGrowth','Total\nOpportunity'];
   const vals   = [baseline,lbbUp,oosUp,supUp,seoUp,adsUp,total];
@@ -683,6 +694,120 @@ function openWin() {
 }
 function closeWin() {
   document.getElementById('w-overlay').classList.remove('open');
+}
+
+// ── BASELINE INPUT HELPERS ──
+function onBaselineInput(el) {
+  const raw = el.value.replace(/[^0-9]/g,'');
+  document.getElementById('baseline').value = raw || '0';
+  recalc();
+}
+function formatBaselineDisplay(el) {
+  const n = parseInt(document.getElementById('baseline').value)||0;
+  el.value = n.toLocaleString('en-US');
+}
+
+// ── i18n TRANSLATIONS ──
+const LANGS = {
+  en: {
+    'bb-section-title':'Buybox Breakdown',
+    'lbl-primary':'Primary seller','lbl-lbb':'Lost buybox (3P)','lbl-oos':'Out of stock','lbl-sup':'Suppressed',
+    'stat-label-primary':'Primary Seller','stat-sub-primary':'of buybox time',
+    'stat-label-lbb':'Lost Buybox (3P)','stat-sub-lbb':'captured by other sellers',
+    'stat-label-oos':'Out of Stock','stat-sub-oos':'truly lost revenue',
+    'stat-label-sup':'Suppressed','stat-sub-sup':'listing invisible',
+    'stat-label-sell':'Active Sellers','stat-sub-sell':'on the listing',
+    'panel-title':'Seller Buybox Detail','col-seller':'Seller','col-type':'Type','col-share':'BB Share','col-rev':'Est. Rev','col-first':'First Seen',
+    'lbl-baseline':'Top Seller Revenue — T12M','lbl-tbr':'Est. Total Brand Rev (Incl. 3P)',
+    'ctrl-recapture':'3P Recapture','ctrl-health':'Listing Health','ctrl-growth':'Growth',
+    'lbl-lbb-lever':'Lost Buybox','lbl-oos-lever':'Out of Stock','lbl-sup-lever':'Suppression',
+    'lbl-rate':'Rate','lbl-solve':'Solve',
+    'lbl-seo':'SEO / Content Lift ($)','lbl-ads':'Ads Growth','lbl-pct-rev':'% rev',
+    'total-title':'Total Brand Opportunity',
+    'chart-sub':'Growth waterfall · all figures directional · not actuals',
+    'leg-base':'Baseline / Total','leg-lbb':'3P Recapture (LBB)','leg-health':'Listing Health Fix','leg-growth':'Growth Levers',
+    'win-btn-lbl':'▲ View search winnability',
+    'win-modal-title':'Digital Search Winnability',
+    'win-col-l':'Winning & High Priority','win-col-r':'Monitor & Develop',
+    'win-clicks-cap':'Clicks captured','win-in-auction':'In auction',
+  },
+  zh: {
+    'bb-section-title':'购物车分析',
+    'lbl-primary':'主要卖家','lbl-lbb':'丢失购物车（第三方）','lbl-oos':'缺货','lbl-sup':'被抑制',
+    'stat-label-primary':'主要卖家','stat-sub-primary':'购物车时间占比',
+    'stat-label-lbb':'丢失购物车（第三方）','stat-sub-lbb':'被其他卖家获取',
+    'stat-label-oos':'缺货','stat-sub-oos':'真实损失收入',
+    'stat-label-sup':'被抑制','stat-sub-sup':'商品不可见',
+    'stat-label-sell':'活跃卖家','stat-sub-sell':'在该商品页面',
+    'panel-title':'卖家购物车详情','col-seller':'卖家','col-type':'类型','col-share':'购物车占比','col-rev':'估计收入','col-first':'首次出现',
+    'lbl-baseline':'主要卖家收入 — 近12个月','lbl-tbr':'估计品牌总收入（含第三方）',
+    'ctrl-recapture':'第三方回收','ctrl-health':'商品健康修复','ctrl-growth':'增长',
+    'lbl-lbb-lever':'丢失购物车','lbl-oos-lever':'缺货','lbl-sup-lever':'抑制',
+    'lbl-rate':'比率','lbl-solve':'解决',
+    'lbl-seo':'SEO / 内容提升 ($)','lbl-ads':'广告增长','lbl-pct-rev':'收入%',
+    'total-title':'品牌总机会',
+    'chart-sub':'增长瀑布图 · 所有数据为方向性估算 · 非实际数据',
+    'leg-base':'基准 / 总计','leg-lbb':'第三方回收（购物车丢失）','leg-health':'商品健康修复','leg-growth':'增长杠杆',
+    'win-btn-lbl':'▲ 查看搜索可赢性',
+    'win-modal-title':'数字搜索可赢性',
+    'win-col-l':'赢得 & 高优先级','win-col-r':'监控 & 发展',
+    'win-clicks-cap':'获得点击','win-in-auction':'参与竞价',
+  }
+};
+let currentLang = 'en';
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  document.getElementById('lang-toggle').textContent = currentLang === 'en' ? '中文' : 'EN';
+  applyLang();
+}
+function t(key) { return LANGS[currentLang][key] || LANGS.en[key] || key; }
+function applyLang() {
+  const L = currentLang;
+  // Section titles
+  const bbt = document.querySelector('.bb-section-title');
+  if(bbt) bbt.childNodes[0].textContent = t('bb-section-title')+' ';
+  // Bar legend labels
+  const legItems = document.querySelectorAll('.bb-leg-item');
+  if(legItems[0]) legItems[0].lastChild.textContent = t('lbl-primary');
+  if(legItems[1]) legItems[1].lastChild.textContent = t('lbl-lbb');
+  if(legItems[2]) legItems[2].lastChild.textContent = t('lbl-oos');
+  if(legItems[3]) legItems[3].lastChild.textContent = t('lbl-sup');
+  // Stat card labels/subs
+  const cardLabels = document.querySelectorAll('.bb-stat-label');
+  const cardSubs   = document.querySelectorAll('.bb-stat-sub');
+  const labelKeys = ['stat-label-primary','stat-label-lbb','stat-label-oos','stat-label-sup','stat-label-sell'];
+  const subKeys   = ['stat-sub-primary','stat-sub-lbb','stat-sub-oos','stat-sub-sup','stat-sub-sell'];
+  labelKeys.forEach((k,i)=>{ if(cardLabels[i]) cardLabels[i].textContent=t(k); });
+  subKeys.forEach((k,i)=>{ if(cardSubs[i]) cardSubs[i].textContent=t(k); });
+  // Controls
+  document.querySelector('.baseline-row label').textContent = t('lbl-baseline');
+  document.querySelector('.tbr-row span:first-child').textContent = t('lbl-tbr');
+  const ctrlTitles = document.querySelectorAll('.ctrl-title');
+  if(ctrlTitles[0]) ctrlTitles[0].childNodes[0].nodeValue = t('ctrl-recapture');
+  if(ctrlTitles[1]) ctrlTitles[1].childNodes[0].nodeValue = t('ctrl-health');
+  if(ctrlTitles[2]) ctrlTitles[2].childNodes[0].nodeValue = t('ctrl-growth');
+  // Lever names
+  const leverNames = document.querySelectorAll('.lever-name');
+  if(leverNames[0]) leverNames[0].textContent = t('lbl-lbb-lever');
+  if(leverNames[1]) leverNames[1].textContent = t('lbl-oos-lever');
+  if(leverNames[2]) leverNames[2].textContent = t('lbl-sup-lever');
+  if(leverNames[3]) leverNames[3].textContent = t('lbl-seo');
+  if(leverNames[4]) leverNames[4].textContent = t('lbl-ads');
+  // Total box
+  document.querySelector('.t-lbl').textContent = t('total-title');
+  // Chart subtitle + legend
+  document.querySelector('.chart-sub').textContent = t('chart-sub');
+  const clegs = document.querySelectorAll('.cleg');
+  const legKeys = ['leg-base','leg-lbb','leg-health','leg-growth'];
+  clegs.forEach((el,i)=>{ if(legKeys[i]) el.lastChild.textContent = t(legKeys[i]); });
+  // Win button
+  const wb = document.querySelector('.win-btn');
+  if(wb) wb.textContent = t('win-btn-lbl');
+  // Win modal
+  const wt = document.querySelector('.w-title');
+  if(wt) wt.innerHTML = currentLang==='zh' ? '数字搜索<em>可赢性</em>' : 'Digital Search <em>Winnability</em>';
+  // Rebuild bar labels on next updateBB
+  updateBB();
 }
 document.addEventListener("DOMContentLoaded", function() { updateBB(); recalc(); });
 </script>
