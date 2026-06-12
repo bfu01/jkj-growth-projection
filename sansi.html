@@ -355,7 +355,7 @@
       <div class="ctrl-title">Growth</div>
       <div class="seo-card">
         <div class="lever-name" style="color:#009BFF;font-size:12px;">SEO / Content Lift ($)</div>
-        <input class="seo-inp" type="number" id="seo-value" value="100000" oninput="recalc()">
+        <input class="seo-inp" type="number" id="seo-value" value="14000" oninput="recalc()">
       </div>
       <div class="ads-card">
         <div class="lever-hdr" style="margin-bottom:6px;">
@@ -570,7 +570,8 @@ function recalc() {
   const uplift = total-baseline;
   const upliftP= ((uplift/baseline)*100).toFixed(1);
 
-  document.getElementById('total-brand-display').textContent = fmt(totalBrand);
+  // total-brand-display removed
+  const tbrEl = document.getElementById('total-brand-display'); if(tbrEl) tbrEl.textContent = fmt(totalBrand);
   document.getElementById('lbb-pct').textContent  = Math.round(lbbSolve*100)+'%';
   document.getElementById('oos-pct').textContent  = Math.round(oosSolve*100)+'%';
   document.getElementById('sup-pct').textContent  = Math.round(supSolve*100)+'%';
